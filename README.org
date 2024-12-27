@@ -1,0 +1,43 @@
+#+TITLE: SQL and PostgreSQL
+
+In computing, a database is an organized collection of data. SQL is the software
+that interacts with the database engine to capture and analyze data. Different
+Database engines use different types of SQL, but most are similar enough to be
+understandable if you know at least one.
+
+In this repository I am going to skip over a lot of the basics of working with a
+Database as I have already learned and relearned it a couple of times in my
+life. There are plenty of guides online that can you teach you the basics quite
+efficiently. I will however put snippets of sql files and general notes about
+some of the topics I learn.
+
+* Notes
+** Keywords
+   Postgres has the following keywords:
+   - ~FROM~: Dictates which table to run query on.
+   - ~SELECT~: Used to select rows from a table.
+   - ~AS~: Used to dictate custom name for column in results.
+** Column Data Types
+   Postgres supports the following column data types:
+   - ~VARCHAR(50)~: Variable length character. In this case our column would
+     only accept strings less than or equal to 50 characters in length, but that
+     number can be changed to any length we need.
+   - ~INTEGER~: A number without a decimal within: =-2,147,483,647= to
+     =2,147,483,647=. Anything larger or small will result in an error
+** Math Operators
+   Postgres supports the following math operators:
+   - ~+~: Add
+   - ~-~: Subtract
+   - ~*~: Multiply
+   - ~/~: Divide
+   - ~^~: Exponent
+   - ~|/~: Square Root
+   - ~@~: Absolute Value
+   - ~%~: Remainder
+** String Operators and Functions
+   Postgres supports the following string operator and functions:
+   - ~||~: Join two strings
+   - ~CONCAT()~: Join two strings
+   - ~LOWER()~: Gives a lower case string
+   - ~LENGTH()~: Gives number of characters in a string
+   - ~UPPER()~: Gives an upper case string
