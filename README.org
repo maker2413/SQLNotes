@@ -61,3 +61,7 @@ some of the topics I learn.
    schema. SQL databases are table-based, NoSQL databases have a variety of
    different storage methods, such as document, key-value, graph, wide-column,
    and more.
+
+* SQL Engine specific notes
+  Here are some notes on some specific sql engines:
+  - [[./SQLite/README.org][SQLite]]: lightweight and self-contained relational database.
