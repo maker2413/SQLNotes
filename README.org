@@ -42,6 +42,83 @@ some of the topics I learn.
    - ~LENGTH()~: Gives number of characters in a string
    - ~UPPER()~: Gives an upper case string
 
+** Aggregations
+   An "aggregation" is a single value that's derived by combining several other
+   values. Here are some valuable aggregations to know:
+   - ~COUNT()~: returns the number of records.
+   - ~SUM()~: returns the sum of all values for a column.
+   - ~MAX()~: returns the max value for a column.
+   - ~MIN()~: returns the minimum value for a column.
+   - ~AVG()~: returns the average of the values for a column.
+   - ~ROUND(value, precision)~: allows you to specify both the value you wish to
+     round and the precision to which you wish to round it. If no precision is
+     given, SQL will round the value to the nearest whole value.
+
+*** GROUP BY
+    SQL offers the ~GROUP BY~ clause which can group rows that have similar
+    values into "summary" rows. It returns one row for each group. The
+    interesting part is that each group can have an aggregate function applied
+    to it that operates only on the grouped data.
+
+    Imagine you have the following database:
+    | song_id | title     | album_id |
+    |---------+-----------+----------|
+    |       1 | Crawl     |       10 |
+    |       2 | Oakland   |       10 |
+    |       3 | Bonfire   |       11 |
+    |       4 | Fire Fly  |       11 |
+    |       5 | Heartbeat |       11 |
+    |       6 | Sober     |       12 |
+
+    Here is an example query:
+    #+begin_src sql
+      SELECT album_id, count(song_id) AS song_count
+      FROM songs
+      GROUP BY album_id;
+    #+end_src
+
+    This query retrieves a count of all the songs on each album. One record is
+    returned per album, and they each have their own count:
+    | album_id | song_count |
+    |----------+------------|
+    |       10 |          2 |
+    |       11 |          3 |
+    |       12 |          1 |
+
+*** HAVING
+    When we need to filter the results of a ~GROUP BY~ query even further, we
+    can use the ~HAVING~ clause. The ~HAVING~ clause specifies a search
+    condition for a group.
+
+    The ~HAVING~ clause is similar to the ~WHERE~ clause, but it operates on
+    groups after they've been grouped, rather than rows before they've been
+    grouped.
+
+    #+begin_src sql
+      SELECT album_id, count(id) as count
+      FROM songs
+      GROUP BY album_id
+      HAVING count > 5;
+    #+end_src
+
+    This query returns the ~album_id~ and count of its songs, but only for
+    albums with more than 5 songs.
+
+**** HAVING vs WHERE
+     It's fairly common for developers to get confused about the difference
+     between the ~HAVING~ and the ~WHERE~ clauses - they're pretty similar after
+     all.
+
+     The difference is fairly simple in actuality:
+     - A ~WHERE~ condition is applied to all the data in a query before it's
+       grouped by a ~GROUP BY~ clause.
+     - A ~HAVING~ condition is only applied to the grouped rows that are
+       returned after a ~GROUP BY~ is applied.
+
+     This means that if you want to filter based on the result of an
+     aggregation, you need to use ~HAVING~. If you want to filter on a value
+     that's present in the raw data, you should use a simple ~WHERE~ clause.
+
 ** NoSQL vs. SQL
    When talking about SQL databases, we also have to mention the elephant in the
    room: ~NoSQL~.
