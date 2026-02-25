@@ -172,6 +172,30 @@ some of the topics I learn.
    different storage methods, such as document, key-value, graph, wide-column,
    and more.
 
+* Misc Notes
+  Here are just some one off notes that I didn't think belonged anywhere else or
+  are just general minor things to know:
+
+** Programming Language
+   This doesn't come up often, but it's important to remember that SQL is a full
+   programming language. We usually use it to interact with data stored in
+   tables, but it's quite flexible and powerful.
+
+   For example, you can ~SELECT~ information that's simply calculated, with no
+   tables necessary.
+   #+begin_src sql
+     SELECT 5 + 10 as sum;
+   #+end_src
+
+   For instance if you can assume that every year has 365 days this query would
+   return all users over 40 years old:
+   #+begin_src sql
+     SELECT * FROM users
+     WHERE age_in_days > (
+       SELECT 40 * 365
+     );
+   #+end_src
+
 * SQL Engine specific notes
   Here are some notes on some specific sql engines:
   - [[./SQLite/README.org][SQLite]]: lightweight and self-contained relational database.
