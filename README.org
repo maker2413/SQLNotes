@@ -519,6 +519,30 @@ some of the topics I learn.
     ~ON id = id~ won't work because the database can't distinguish between the
     ~id~ columns in each table.
 
+** Left Join
+   A ~LEFT JOIN~ will return every record from ~table_a~ regardless of whether
+   or not any of those records have a match in ~table_b~. A left join will also
+   return any matching records from ~table_b~. Here is a Venn diagram to help
+   visualize the effect of a ~LEFT JOIN~.
+
+   [[./left_join.png]]
+
+   A small trick you can do to make writing the SQL query easier is define an
+   [[https://en.wikipedia.org/wiki/Alias_(SQL)][alias]] for each table. Here's an example:
+   #+begin_src sql
+     SELECT e.name, d.name
+     FROM employees e
+     LEFT JOIN departments d
+     ON e.department_id = d.id;
+   #+end_src
+
+   Notice the simple alias declarations ~e~ and ~d~ for ~employees~ and
+   ~departments~ respectively.
+
+   Some developers do this to make their queries less verbose. That said, I
+   personally hate it because single-letter variables are harder to grok, so
+   don't use them in this course.
+
 * Misc Notes
   Here are just some one off notes that I didn't think belonged anywhere else or
   are just general minor things to know:
