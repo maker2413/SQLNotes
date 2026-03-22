@@ -542,6 +542,16 @@ some of the topics I learn.
    Some developers do this to make their queries less verbose. That said, I
    personally hate it because single-letter variables are harder to grok, so
    don't use them in this course.
+   
+** Right Join
+   A ~RIGHT JOIN~ is, as you may expect, the opposite of a ~LEFT JOIN~. It
+   returns all records from ~table_b~ regardless of matches, and all matching
+   records between the two tables.
+
+   [[./right_join.png]]
+
+   A ~RIGHT JOIN~ is just a ~LEFT JOIN~ with the order of the tables switched,
+   so in most cases ~LEFT JOIN~ is preferred for readability.
 
 * Misc Notes
   Here are just some one off notes that I didn't think belonged anywhere else or
